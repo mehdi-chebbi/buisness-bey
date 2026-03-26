@@ -338,6 +338,17 @@ export default function Home() {
 
         {/* ─── HERO ─── */}
         <section id="hero" style={{ position: 'relative', minHeight: '100svh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: '80px 24px 48px' }}>
+          {/* Background Image */}
+          <div style={{
+            position: 'absolute', inset: 0,
+            backgroundImage: 'url(https://i.ibb.co/xKkGfGPC/641510215-122168601122848423-4151419390106855623-n.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            opacity: 0.15,
+            filter: 'blur(2px)',
+          }} />
+          {/* Dark overlay */}
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(8,6,4,0.7) 0%, rgba(8,6,4,0.85) 50%, rgba(8,6,4,0.95) 100%)' }} />
           <div className="star-layer" />
           <div className="hero-grain" />
 
@@ -415,6 +426,53 @@ export default function Home() {
               ))}
             </div>
           </div>
+
+          {/* Category Image Banner */}
+          {activeFilter !== 'all' && activeFilter !== 'drinks' && activeFilter !== 'chicha' && (
+            <div style={{ 
+              margin: '0 24px 24px', 
+              borderRadius: '16px', 
+              overflow: 'hidden',
+              height: '180px',
+              position: 'relative',
+            }}>
+              <img 
+                src={
+                  activeFilter === 'coffee' 
+                    ? 'https://i.ibb.co/60Tj9xwP/629360307-122165915702848423-3725412382149744939-n.jpg'
+                    : activeFilter === 'breakfast'
+                    ? 'https://i.ibb.co/bj2N5vjC/589040096-122154182402848423-1895799351891892350-n.jpg'
+                    : 'https://i.ibb.co/gbjGcX3B/656755343-17881970907482007-4601940001420518899-n.jpg'
+                }
+                alt={activeFilter}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                }}
+              />
+              <div style={{
+                position: 'absolute', inset: 0,
+                background: 'linear-gradient(180deg, rgba(8,6,4,0.3) 0%, rgba(8,6,4,0.6) 100%)',
+              }} />
+              <div style={{
+                position: 'absolute', bottom: '16px', left: '20px',
+              }}>
+                <span className="sans" style={{
+                  fontSize: '10px',
+                  letterSpacing: '0.3em',
+                  textTransform: 'uppercase',
+                  color: '#d4a373',
+                  fontWeight: 600,
+                }}>
+                  {activeFilter === 'coffee' && 'Nos Cafés'}
+                  {activeFilter === 'breakfast' && 'Petit Déjeuner'}
+                  {activeFilter === 'food' && 'Pâtisseries'}
+                </span>
+              </div>
+            </div>
+          )}
 
           {/* Menu items */}
           <div className="menu-grid sp" style={{ padding: '0 24px' }}>
