@@ -150,7 +150,7 @@ const hours = [
 export default function Home() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
-  const [activeFilter, setActiveFilter] = useState('all');
+  const [activeFilter, setActiveFilter] = useState('petitdej');
   const [activeTab, setActiveTab] = useState('home');
   const [scrolled, setScrolled] = useState(false);
 
@@ -632,12 +632,12 @@ export default function Home() {
             <div className="filter-scroll" style={{ justifyContent: 'flex-start' }}>
               {[
                 ['all','Tout'],
-                ['petitdej','🍳 Petit Déj'],
-                ['cafes','☕ Cafés'],
-                ['the','🍵 Thé & Choco'],
-                ['boissons','🥤 Boissons'],
-                ['sale','🥪 Salé'],
-                ['chicha','💨 Chicha']
+                ['petitdej','Petit Déj'],
+                ['cafes','Cafés'],
+                ['the','Thé & Choco'],
+                ['boissons','Boissons'],
+                ['sale','Salé'],
+                ['chicha','Chicha']
               ].map(([val, label]) => (
                 <button key={val} className={`filter-chip${activeFilter === val ? ' active' : ''}`} onClick={() => setActiveFilter(val)} style={{ scrollSnapAlign: 'start' }}>{label}</button>
               ))}
