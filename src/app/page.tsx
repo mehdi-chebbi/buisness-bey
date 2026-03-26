@@ -192,14 +192,37 @@ export default function Home() {
         
         /* FILTER CHIPS */
         .filter-chip {
-          font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600;
-          letter-spacing: 0.1em; text-transform: uppercase;
+          font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 600;
+          letter-spacing: 0.08em; text-transform: uppercase;
           border: 1px solid rgba(200,149,90,0.3); background: rgba(8,6,4,0.6);
-          color: rgba(240,230,211,0.6); padding: 10px 22px; border-radius: 30px;
+          color: rgba(240,230,211,0.6); padding: 10px 16px; border-radius: 30px;
           cursor: pointer; transition: all 0.3s; white-space: nowrap;
           -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+          flex-shrink: 0;
         }
         .filter-chip.active { background: linear-gradient(45deg, #c8955a, #a67c45); border-color: transparent; color: #080604; box-shadow: 0 4px 15px rgba(200,149,90,0.3); }
+        
+        /* Filter container for mobile */
+        .filter-scroll {
+          display: flex; gap: 10px; padding: 0 24px 32px;
+          overflow-x: auto; scrollbar-width: none;
+          -webkit-overflow-scrolling: touch;
+          scroll-snap-type: x mandatory;
+        }
+        .filter-scroll::-webkit-scrollbar { display: none; }
+        
+        /* Scroll fade indicators */
+        .filter-wrapper { position: relative; }
+        .filter-wrapper::before, .filter-wrapper::after {
+          content: ''; position: absolute; top: 0; bottom: 32px; width: 30px;
+          pointer-events: none; z-index: 2;
+        }
+        .filter-wrapper::before {
+          left: 0; background: linear-gradient(to right, #080604 0%, transparent 100%);
+        }
+        .filter-wrapper::after {
+          right: 0; background: linear-gradient(to left, #080604 0%, transparent 100%);
+        }
 
         /* INPUTS */
         .bb-input {
@@ -280,6 +303,9 @@ export default function Home() {
           .nav-link::after { content:''; position:absolute; bottom:0; left:0; width:0; height:1px; background:#d4a373; transition:width .35s ease; }
           .nav-link:hover { color: #d4a373; }
           .nav-link:hover::after { width: 100%; }
+          .filter-scroll { justify-content: center !important; overflow-x: visible !important; }
+          .filter-wrapper::before, .filter-wrapper::after { display: none !important; }
+          .filter-chip { padding: 10px 20px !important; font-size: 11px !important; }
         }
       `}</style>
 
@@ -375,11 +401,19 @@ export default function Home() {
           </div>
 
           {/* Filter chips */}
-          <div style={{ display: 'flex', gap: '12px', padding: '0 24px 32px', overflowX: 'auto', scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch', justifyContent: 'center' }}>
-            <style>{`.chip-scroll::-webkit-scrollbar{display:none}`}</style>
-            {[['all','Tout'],['coffee','Cafés'],['breakfast','Petit Déj'],['food','Pâtisseries'],['drinks','Boissons'],['chicha','Chicha']].map(([val, label]) => (
-              <button key={val} className={`filter-chip${activeFilter === val ? ' active' : ''}`} onClick={() => setActiveFilter(val)}>{label}</button>
-            ))}
+          <div className="filter-wrapper">
+            <div className="filter-scroll" style={{ justifyContent: 'flex-start' }}>
+              {[
+                ['all','Tout'],
+                ['coffee','☕ Cafés'],
+                ['breakfast','🍳 Petit Déj'],
+                ['food','🍰 Pâtisseries'],
+                ['drinks','🥤 Boissons'],
+                ['chicha','💨 Chicha']
+              ].map(([val, label]) => (
+                <button key={val} className={`filter-chip${activeFilter === val ? ' active' : ''}`} onClick={() => setActiveFilter(val)} style={{ scrollSnapAlign: 'start' }}>{label}</button>
+              ))}
+            </div>
           </div>
 
           {/* Menu items */}
