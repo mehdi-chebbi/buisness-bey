@@ -16,8 +16,8 @@ export const metadata: Metadata = {
   title: "Business Bey | Coffee Shop in L'Aouina, Tunisia",
   description: "Welcome to Business Bey - Your cozy coffee spot in L'Aouina, Tunisia. Premium coffee, warm atmosphere, and unforgettable moments.",
   icons: {
-    icon: "/images/logo.jpg",
-    apple: "/images/logo.jpg",
+    icon: "logo.svg",
+    apple: "logo.svg",
   },
 };
 
