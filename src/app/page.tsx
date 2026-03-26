@@ -344,11 +344,9 @@ export default function Home() {
             backgroundImage: 'url(https://i.ibb.co/xKkGfGPC/641510215-122168601122848423-4151419390106855623-n.jpg)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            opacity: 0.15,
-            filter: 'blur(2px)',
           }} />
           {/* Dark overlay */}
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(8,6,4,0.7) 0%, rgba(8,6,4,0.85) 50%, rgba(8,6,4,0.95) 100%)' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'rgba(8,6,4,0.75)' }} />
           <div className="star-layer" />
           <div className="hero-grain" />
 
@@ -398,6 +396,146 @@ export default function Home() {
           ))}
         </div>
 
+        {/* ─── ABOUT US ─── */}
+        <section id="about" style={{ padding: '60px 24px', position: 'relative' }}>
+          <div style={{ 
+            display: 'flex', 
+            flexDirection: 'column', 
+            gap: '32px',
+            alignItems: 'center',
+          }}>
+            {/* Text Section */}
+            <div style={{ textAlign: 'center' }}>
+              <span className="sans" style={{ 
+                fontSize: '10px', 
+                fontWeight: 600, 
+                letterSpacing: '0.4em', 
+                textTransform: 'uppercase', 
+                color: '#d4a373', 
+                display: 'block', 
+                marginBottom: '16px' 
+              }}>À Propos</span>
+              <h2 style={{ 
+                fontSize: 'clamp(36px, 10vw, 52px)', 
+                fontWeight: 300, 
+                letterSpacing: '0.02em', 
+                lineHeight: 1.1, 
+                marginBottom: '20px',
+                color: '#f0e6d3',
+              }}>
+                Notre <em style={{ color: '#d4a373', fontStyle: 'italic' }}>Histoire</em>
+              </h2>
+              <p style={{ 
+                fontSize: '16px', 
+                fontWeight: 300, 
+                color: 'rgba(240,230,211,0.7)', 
+                lineHeight: 1.8, 
+                marginBottom: '16px',
+              }}>
+                Niché au cœur de L'Aouina, Business Bey est bien plus qu'un simple café. C'est un refuge, un espace où chaque tasse est préparée avec passion et où chaque instant devient un souvenir.
+              </p>
+              <p style={{ 
+                fontSize: '16px', 
+                fontWeight: 300, 
+                color: 'rgba(240,230,211,0.7)', 
+                lineHeight: 1.8,
+              }}>
+                Que vous soyez là pour un café rapide, un petit déjeuner copieux ou une soirée détente entre amis, notre équipe vous accueille avec chaleur dans une ambiance unique.
+              </p>
+            </div>
+            
+            {/* Image Grid */}
+            <div style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(2, 1fr)', 
+              gap: '12px',
+              width: '100%',
+              maxWidth: '500px',
+            }}>
+              <div style={{
+                borderRadius: '12px',
+                overflow: 'hidden',
+                aspectRatio: '1',
+              }}>
+                <img 
+                  src="https://i.ibb.co/60Tj9xwP/629360307-122165915702848423-3725412382149744939-n.jpg"
+                  alt="Café"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                  }}
+                />
+              </div>
+              <div style={{
+                borderRadius: '12px',
+                overflow: 'hidden',
+                aspectRatio: '1',
+              }}>
+                <img 
+                  src="https://i.ibb.co/bj2N5vjC/589040096-122154182402848423-1895799351891892350-n.jpg"
+                  alt="Petit Déjeuner"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                  }}
+                />
+              </div>
+              <div style={{
+                borderRadius: '12px',
+                overflow: 'hidden',
+                aspectRatio: '1',
+              }}>
+                <img 
+                  src="https://i.ibb.co/gbjGcX3B/656755343-17881970907482007-4601940001420518899-n.jpg"
+                  alt="Pâtisseries"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                  }}
+                />
+              </div>
+              <div style={{
+                borderRadius: '12px',
+                overflow: 'hidden',
+                aspectRatio: '1',
+                background: 'rgba(200,149,90,0.1)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'column',
+                gap: '8px',
+              }}>
+                <span style={{ fontSize: '32px', fontWeight: 300, color: '#d4a373' }}>☕</span>
+                <span className="sans" style={{ fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(240,230,211,0.6)' }}>Depuis 2024</span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Desktop styles */}
+          <style>{`
+            @media (min-width: 768px) {
+              #about > div {
+                flex-direction: row;
+                align-items: center;
+                gap: 60px;
+                max-width: 1100px;
+                margin: 0 auto;
+              }
+              #about > div > div:first-child {
+                flex: 1;
+                text-align: left;
+              }
+              #about > div > div:last-child {
+                flex: 1;
+                max-width: 450px;
+              }
+            }
+          `}</style>
+        </section>
+
         {/* ─── MENU ─── */}
         <section id="menu" style={{ padding: '80px 0 48px', position: 'relative' }}>
           <div className="sp" style={{ padding: '0 24px', marginBottom: '36px', textAlign: 'center' }}>
@@ -426,53 +564,6 @@ export default function Home() {
               ))}
             </div>
           </div>
-
-          {/* Category Image Banner */}
-          {activeFilter !== 'all' && activeFilter !== 'drinks' && activeFilter !== 'chicha' && (
-            <div style={{ 
-              margin: '0 24px 24px', 
-              borderRadius: '16px', 
-              overflow: 'hidden',
-              height: '180px',
-              position: 'relative',
-            }}>
-              <img 
-                src={
-                  activeFilter === 'coffee' 
-                    ? 'https://i.ibb.co/60Tj9xwP/629360307-122165915702848423-3725412382149744939-n.jpg'
-                    : activeFilter === 'breakfast'
-                    ? 'https://i.ibb.co/bj2N5vjC/589040096-122154182402848423-1895799351891892350-n.jpg'
-                    : 'https://i.ibb.co/gbjGcX3B/656755343-17881970907482007-4601940001420518899-n.jpg'
-                }
-                alt={activeFilter}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  objectPosition: 'center',
-                }}
-              />
-              <div style={{
-                position: 'absolute', inset: 0,
-                background: 'linear-gradient(180deg, rgba(8,6,4,0.3) 0%, rgba(8,6,4,0.6) 100%)',
-              }} />
-              <div style={{
-                position: 'absolute', bottom: '16px', left: '20px',
-              }}>
-                <span className="sans" style={{
-                  fontSize: '10px',
-                  letterSpacing: '0.3em',
-                  textTransform: 'uppercase',
-                  color: '#d4a373',
-                  fontWeight: 600,
-                }}>
-                  {activeFilter === 'coffee' && 'Nos Cafés'}
-                  {activeFilter === 'breakfast' && 'Petit Déjeuner'}
-                  {activeFilter === 'food' && 'Pâtisseries'}
-                </span>
-              </div>
-            </div>
-          )}
 
           {/* Menu items */}
           <div className="menu-grid sp" style={{ padding: '0 24px' }}>
