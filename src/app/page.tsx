@@ -4,53 +4,131 @@ import { useState, useEffect } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, Share2, Link2, Coffee, BookOpen, HomeIcon, Star } from 'lucide-react';
 
 const menuItems = [
-  // Cafés
-  { name: 'Espresso', description: 'Riche et audacieux, simple cuvette', price: '4 DT', category: 'coffee' },
-  { name: 'Espresso Double', description: 'Double shot pour les amateurs', price: '6 DT', category: 'coffee' },
-  { name: 'Cappuccino', description: 'Espresso avec lait vapeur et mousse', price: '7 DT', category: 'coffee' },
-  { name: 'Latte', description: 'Espresso onctueux au lait crémeux', price: '8 DT', category: 'coffee' },
-  { name: 'Americano', description: 'Espresso allongé à l\'eau chaude', price: '5 DT', category: 'coffee' },
-  { name: 'Flat White', description: 'Micro-mousse veloutée et espresso', price: '9 DT', category: 'coffee' },
-  { name: 'Mocha', description: 'Espresso, chocolat et lait vapeur', price: '10 DT', category: 'coffee' },
-  { name: 'Macchiato', description: 'Espresso marqué de mousse de lait', price: '6 DT', category: 'coffee' },
-  { name: 'Café Glacé', description: 'Cold brew servi sur glaçons', price: '8 DT', category: 'coffee' },
-  { name: 'Café Turc', description: 'Café traditionnel à la turque', price: '5 DT', category: 'coffee' },
-  { name: 'Café Direct', description: 'Café local tunisien classique', price: '4 DT', category: 'coffee' },
-  { name: 'Cappuccino Glacé', description: 'Cappuccino glacé onctueux', price: '10 DT', category: 'coffee' },
-  
   // Petit Déjeuner
-  { name: 'Petit Déjeuner Complet', description: 'Œufs, fromage, pain, beurre, confiture, jus', price: '18 DT', category: 'breakfast' },
-  { name: 'Œufs Brouillés', description: 'Œufs brouillés moelleux avec toast', price: '10 DT', category: 'breakfast' },
-  { name: 'Omelette Fromage', description: 'Omelette fondante au fromage', price: '12 DT', category: 'breakfast' },
-  { name: 'Omelette Jambon', description: 'Omelette au jambon et fromage', price: '14 DT', category: 'breakfast' },
-  { name: 'Tartine Avocat', description: 'Avocat frais sur pain artisanal', price: '15 DT', category: 'breakfast' },
-  { name: 'Tartine Fromage', description: 'Fromage frais sur pain grillé', price: '8 DT', category: 'breakfast' },
-  { name: 'Pancakes', description: 'Pancakes moelleux au sirop d\'érable', price: '14 DT', category: 'breakfast' },
-  { name: 'French Toast', description: 'Pain perdu croustillant et moelleux', price: '13 DT', category: 'breakfast' },
-  { name: 'Brik à l\'Œuf', description: 'Brik traditionnel tunisien', price: '8 DT', category: 'breakfast' },
+  { name: 'Le Bey Gourmand', description: 'Café au choix, jus frais, eau 0.5L, gâteau glacé, croissant salé, mini burger, omelette, saucisse, charcuterie, fromage', price: '34 DT', category: 'petitdej' },
+  { name: 'El Baldy Bey', description: 'Café au choix, eau 0.5L, jus citron frais, miel, beurre, bsissa, richta hlouwa, toast salé tunisien, œuf, hrissa, pain traditionnel', price: '34 DT', category: 'petitdej' },
+  { name: 'Signature du Bey (2P)', description: '2 cafés, 2 jus frais, eau, 2 yaourts glacés, viennoiserie, trilece, pancake, gaufre, cookies, brownie, french toast, fruits, chocolat fondu, toasts salés, omelettes, mini burgers, potatoes, charcuterie, fromage, ojja chevrette', price: '74 DT', category: 'petitdej' },
   
-  // Pâtisseries & Desserts
-  { name: 'Croissant', description: 'Pâtisserie feuilletée au beurre', price: '5 DT', category: 'food' },
-  { name: 'Pain au Chocolat', description: 'Croissant fourré au chocolat', price: '6 DT', category: 'food' },
-  { name: 'Cheesecake', description: 'Classique cheesecake onctueux', price: '12 DT', category: 'food' },
-  { name: 'Brownie', description: 'Brownie fondant au chocolat', price: '10 DT', category: 'food' },
-  { name: 'Tiramisu', description: 'Dessert italien au café', price: '14 DT', category: 'food' },
-  { name: 'Cookie Géant', description: 'Cookie moelleux aux pépites', price: '8 DT', category: 'food' },
-  { name: 'Muffin Chocolat', description: 'Muffin fondant au chocolat', price: '7 DT', category: 'food' },
-  { name: 'Mille-Feuille', description: 'Pâtisserie feuilletée à la crème', price: '11 DT', category: 'food' },
-  { name: 'Baklava', description: 'Pâtisserie orientale au miel', price: '8 DT', category: 'food' },
-  { name: 'Glace (2 boules)', description: 'Glace artisanale, plusieurs parfums', price: '9 DT', category: 'food' },
+  // Suppléments
+  { name: 'Mlawi', description: 'Pain traditionnel tunisien', price: '15 DT', category: 'petitdej' },
+  { name: 'Pain Lafif', description: 'Pain tunisien à l\'huile d\'olive', price: '2 DT', category: 'petitdej' },
+  { name: 'Pain au Chocolat', description: 'Viennoiserie au chocolat', price: '4 DT', category: 'petitdej' },
+  { name: 'Croissant Nature', description: 'Croissant au beurre', price: '4 DT', category: 'petitdej' },
+  { name: 'Omelette', description: 'Œufs brouillés', price: '5 DT', category: 'petitdej' },
+  { name: 'Croissant Dubai', description: 'Croissant spécial Dubai', price: '10 DT', category: 'petitdej' },
   
-  // Boissons Fraîches
-  { name: 'Jus d\'Orange Frais', description: 'Oranges fraîchement pressées', price: '8 DT', category: 'drinks' },
-  { name: 'Jus de Citron', description: 'Citronnade rafraîchissante', price: '7 DT', category: 'drinks' },
-  { name: 'Jus de Fraise', description: 'Jus de fraise frais', price: '9 DT', category: 'drinks' },
-  { name: 'Milkshake Vanille', description: 'Milkshake onctueux à la vanille', price: '10 DT', category: 'drinks' },
-  { name: 'Milkshake Chocolat', description: 'Milkshake riche au chocolat', price: '10 DT', category: 'drinks' },
-  { name: 'Smoothie Fruits Rouges', description: 'Mix de fruits rouges frais', price: '12 DT', category: 'drinks' },
-  { name: 'Thé à la Menthe', description: 'Thé tunisien traditionnel', price: '5 DT', category: 'drinks' },
-  { name: 'Eau Minérale', description: 'Eau minérale naturelle', price: '3 DT', category: 'drinks' },
-  { name: 'Soda', description: 'Coca, Fanta, Sprite', price: '5 DT', category: 'drinks' },
+  // Cafés Classiques
+  { name: 'Espresso', description: 'Café court et intense', price: '8 DT', category: 'cafes' },
+  { name: 'Espresso American', description: 'Espresso allongé à l\'eau chaude', price: '8.5 DT', category: 'cafes' },
+  { name: 'Cappuccino', description: 'Espresso, lait vapeur et mousse', price: '8.5 DT', category: 'cafes' },
+  { name: 'Cappuccino Crème', description: 'Cappuccino onctueux', price: '6.5 DT', category: 'cafes' },
+  { name: 'Cappuccino Crème Lait', description: 'Cappuccino crémeux au lait', price: '7.8 DT', category: 'cafes' },
+  { name: 'Cappuccino Crème Nestlé', description: 'Cappuccino crème Nestlé', price: '8.5 DT', category: 'cafes' },
+  { name: 'Cappuccino Pettichie', description: 'Cappuccino spécial', price: '12 DT', category: 'cafes' },
+  { name: 'Café Glacé', description: 'Café froid glacé', price: '15 DT', category: 'cafes' },
+  { name: 'Nespresso', description: 'Café en capsule premium', price: '15 DT', category: 'cafes' },
+  
+  // Café Aromatisé
+  { name: 'Café Caramel', description: 'Café aromatisé au caramel', price: '9.5 DT', category: 'cafes' },
+  { name: 'Café Noisette', description: 'Café aromatisé à la noisette', price: '9.5 DT', category: 'cafes' },
+  { name: 'Café Vanille', description: 'Café aromatisé à la vanille', price: '9.5 DT', category: 'cafes' },
+  { name: 'Café Tiramisu', description: 'Café aromatisé tiramisu', price: '9.5 DT', category: 'cafes' },
+  { name: 'Café Cookies', description: 'Café aromatisé cookies', price: '9.5 DT', category: 'cafes' },
+  { name: 'Café Spéculoos', description: 'Café aromatisé spéculoos', price: '10 DT', category: 'cafes' },
+  { name: 'Café Beurre de Cacahuète', description: 'Café aromatisé cacahuète', price: '10 DT', category: 'cafes' },
+  { name: 'Café Nutella', description: 'Café aromatisé Nutella', price: '11 DT', category: 'cafes' },
+  
+  // Iced Coffee
+  { name: 'Iced Coffee', description: 'Café glacé rafraîchissant', price: '13 DT', category: 'cafes' },
+  { name: 'Iced Spanish Latte', description: 'Latte glacé à l\'espagnole', price: '14 DT', category: 'cafes' },
+  { name: 'Iced Caramel Latte', description: 'Latte glacé au caramel', price: '15 DT', category: 'cafes' },
+  { name: 'Iced Hazelnut Latte', description: 'Latte glacé à la noisette', price: '15 DT', category: 'cafes' },
+  { name: 'Iced Tiramisu Latte', description: 'Latte glacé tiramisu', price: '16 DT', category: 'cafes' },
+  { name: 'Iced Nutella Latte', description: 'Latte glacé Nutella', price: '18 DT', category: 'cafes' },
+  
+  // Thés
+  { name: 'Thé à la Menthe Fraîche', description: 'Thé traditionnel à la menthe', price: '5 DT', category: 'the' },
+  { name: 'Thé Infusion', description: 'Infusion aux herbes', price: '5 DT', category: 'the' },
+  { name: 'Thé aux Amandes', description: 'Thé parfumé aux amandes', price: '5 DT', category: 'the' },
+  { name: 'Thé Épignons', description: 'Thé aux épices', price: '5 DT', category: 'the' },
+  { name: 'Signature Gourmande Bey', description: 'Thé signature accompagné de sablés et fruits secs', price: '12 DT', category: 'the' },
+  { name: 'Nature Gourmande Bey', description: 'Thé à la menthe fraîche avec sablés et fruits secs', price: '18 DT', category: 'the' },
+  
+  // Chocolats
+  { name: 'Chocolat Chaud', description: 'Chocolat chaud classique', price: '15 DT', category: 'the' },
+  { name: 'Chocolat Crème Chantilly', description: 'Chocolat chaud avec chantilly', price: '14 DT', category: 'the' },
+  { name: 'Chocolat Chaud Noisette', description: 'Chocolat chaud à la noisette', price: '15 DT', category: 'the' },
+  { name: 'Chocolat Chaud Caramel', description: 'Chocolat chaud au caramel', price: '15 DT', category: 'the' },
+  { name: 'Chocolat Chaud Spéculoos', description: 'Chocolat chaud spéculoos', price: '16 DT', category: 'the' },
+  
+  // Pause Fraîcheur
+  { name: 'Eau Minérale 0.4L', description: 'Eau minérale naturelle', price: '2.5 DT', category: 'boissons' },
+  { name: 'Eau Minérale/Gazifiée', description: 'Eau minérale ou gazéifiée', price: '5 DT', category: 'boissons' },
+  { name: 'Sodas', description: 'Coca, Fanta, Sprite', price: '5 DT', category: 'boissons' },
+  { name: 'Citronade', description: 'Citronnade fraîche', price: '9.5 DT', category: 'boissons' },
+  { name: 'Lemon Mint', description: 'Citron à la menthe', price: '10 DT', category: 'boissons' },
+  { name: 'Energy Drink', description: 'Boisson énergisante', price: '11 DT', category: 'boissons' },
+  { name: 'Citronnade aux Amandes', description: 'Citronnade aux amandes', price: '12.5 DT', category: 'boissons' },
+  { name: 'Limonana', description: 'Limomnade fraîcheur', price: '13.5 DT', category: 'boissons' },
+  
+  // Fruit & Fraîcheur
+  { name: 'Jus de Fraise', description: 'Jus de fraise frais', price: '12 DT', category: 'boissons' },
+  { name: 'Jus de Banane', description: 'Jus de banane frais', price: '13 DT', category: 'boissons' },
+  { name: 'Jus de Kiwi', description: 'Jus de kiwi frais', price: '16 DT', category: 'boissons' },
+  { name: 'Jus de Mangue', description: 'Jus de mangue frais', price: '18 DT', category: 'boissons' },
+  
+  // Cocktails & Slushy
+  { name: 'Evasion', description: 'Cocktail fraîcheur', price: '16 DT', category: 'boissons' },
+  { name: 'Oasis', description: 'Cocktail oasis', price: '17.5 DT', category: 'boissons' },
+  { name: 'Passion', description: 'Cocktail passion', price: '19 DT', category: 'boissons' },
+  { name: 'Eclat', description: 'Cocktail éclat', price: '19 DT', category: 'boissons' },
+  { name: 'Mirage', description: 'Cocktail mirage', price: '20 DT', category: 'boissons' },
+  
+  // Frappuccino
+  { name: 'Frappuccino Vanille', description: 'Frappuccino à la vanille', price: '15 DT', category: 'boissons' },
+  { name: 'Frappuccino Noisette', description: 'Frappuccino à la noisette', price: '16 DT', category: 'boissons' },
+  { name: 'Frappuccino Tiramisu', description: 'Frappuccino tiramisu', price: '17 DT', category: 'boissons' },
+  { name: 'Frappuccino Nutella', description: 'Frappuccino Nutella', price: '18 DT', category: 'boissons' },
+  { name: 'Frappuccino Caramel Beurre Salé', description: 'Frappuccino caramel', price: '18 DT', category: 'boissons' },
+  
+  // Affogato
+  { name: 'Affogato Vanille', description: 'Glace vanille et espresso', price: '14 DT', category: 'boissons' },
+  { name: 'Affogato Pistache', description: 'Glace pistache et espresso', price: '18 DT', category: 'boissons' },
+  
+  // Smoothies & Mojitos
+  { name: 'Virgin Mojito', description: 'Mojito sans alcool', price: '15 DT', category: 'boissons' },
+  { name: 'Deep Blue', description: 'Cocktail bleu rafraîchissant', price: '16 DT', category: 'boissons' },
+  { name: 'Framboise Mojito', description: 'Mojito à la framboise', price: '16 DT', category: 'boissons' },
+  { name: 'Pina Colada', description: 'Cocktail ananas noix de coco', price: '17 DT', category: 'boissons' },
+  { name: 'Mojito Énergétique', description: 'Mojito avec boisson énergisante', price: '19 DT', category: 'boissons' },
+  
+  // Milkshake Crunchy
+  { name: 'Milkshake Strawberry', description: 'Milkshake fraise glacée', price: '15 DT', category: 'boissons' },
+  { name: 'Milkshake Snickers', description: 'Milkshake Snickers glacé', price: '18 DT', category: 'boissons' },
+  { name: 'Milkshake Oreo', description: 'Milkshake Oreo glacé', price: '18 DT', category: 'boissons' },
+  { name: 'Milkshake Spéculoos', description: 'Milkshake spéculoos glacé', price: '18 DT', category: 'boissons' },
+  { name: 'Milkshake Nutella', description: 'Milkshake Nutella glacé', price: '19 DT', category: 'boissons' },
+  { name: 'Milkshake Ferrero Rocher', description: 'Milkshake Ferrero glacé', price: '19 DT', category: 'boissons' },
+  { name: 'Signature Business Bey', description: 'Milkshake signature crunchy pistache', price: '25 DT', category: 'boissons' },
+  
+  // Yaourt Glacé
+  { name: 'Yaourt Glacé Nature', description: 'Yaourt glacé nature', price: '14 DT', category: 'boissons' },
+  { name: 'Yaourt Glacé Nutella', description: 'Yaourt glacé Nutella', price: '17 DT', category: 'boissons' },
+  { name: 'Yaourt Glacé Fruits de Saison', description: 'Yaourt glacé aux fruits', price: '19 DT', category: 'boissons' },
+  { name: 'Yaourt Glacé Chocolat', description: 'Yaourt glacé chocolat', price: '18 DT', category: 'boissons' },
+  { name: 'Yaourt Glacé Fruits des Bois', description: 'Yaourt glacé fruits des bois', price: '18 DT', category: 'boissons' },
+  { name: 'Yaourt Glacé Pistache', description: 'Yaourt glacé pistache', price: '20 DT', category: 'boissons' },
+  
+  // Protein Shake
+  { name: 'Protein Engine', description: 'Shake protéiné énergie', price: '16 DT', category: 'boissons' },
+  { name: 'Protein Power Scale', description: 'Shake protéiné puissance', price: '20 DT', category: 'boissons' },
+  { name: 'Protein Starter', description: 'Shake protéiné starter', price: '20 DT', category: 'boissons' },
+  
+  // Panuzzo
+  { name: 'Grill Chicken Panuzzo', description: 'Laitue, tomate, oignon caramélisé, sauce fromagère, blanc de poulet grillé', price: '17 DT', category: 'sale' },
+  { name: 'Crunchy Chicken Panuzzo', description: 'Laitue, tomate, oignon caramélisé, sauce fromagère, poulet pané', price: '18 DT', category: 'sale' },
+  { name: 'Buffalo Panuzzo', description: 'Laitue, tomate, oignon, viande hachée', price: '19 DT', category: 'sale' },
+  { name: 'Gambero Panuzzo', description: 'Laitue, tomates, roquette, sauce fromagère, chevrette', price: '20 DT', category: 'sale' },
   
   // Chicha
   { name: 'Chicha Pomme', description: 'Goût pomme verte fraîche', price: '25 DT', category: 'chicha' },
@@ -554,10 +632,11 @@ export default function Home() {
             <div className="filter-scroll" style={{ justifyContent: 'flex-start' }}>
               {[
                 ['all','Tout'],
-                ['coffee','☕ Cafés'],
-                ['breakfast','🍳 Petit Déj'],
-                ['food','🍰 Pâtisseries'],
-                ['drinks','🥤 Boissons'],
+                ['petitdej','🍳 Petit Déj'],
+                ['cafes','☕ Cafés'],
+                ['the','🍵 Thé & Choco'],
+                ['boissons','🥤 Boissons'],
+                ['sale','🥪 Salé'],
                 ['chicha','💨 Chicha']
               ].map(([val, label]) => (
                 <button key={val} className={`filter-chip${activeFilter === val ? ' active' : ''}`} onClick={() => setActiveFilter(val)} style={{ scrollSnapAlign: 'start' }}>{label}</button>
