@@ -40,7 +40,7 @@ export default function Home() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
@@ -49,7 +49,7 @@ export default function Home() {
 
   const filtered = activeFilter === 'all' ? menuItems : menuItems.filter(i => i.category === activeFilter);
 
-  const scrollTo = (id, tab) => {
+  const scrollTo = (id: string, tab: string) => {
     setActiveTab(tab);
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -456,10 +456,10 @@ export default function Home() {
 
             {/* Form */}
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-              {[
+              {([
                 { id: 'name', label: 'Votre Nom', type: 'text', placeholder: 'Ahmed Ben Ali' },
                 { id: 'email', label: 'Adresse Email', type: 'email', placeholder: 'bonjour@exemple.com' },
-              ].map(field => (
+              ] as const).map(field => (
                 <div key={field.id}>
                   <label htmlFor={field.id} className="sans" style={{ fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#d4a373', fontWeight: 600, display: 'block', marginBottom: '12px' }}>{field.label}</label>
                   <input id={field.id} type={field.type} placeholder={field.placeholder} className="bb-input"
