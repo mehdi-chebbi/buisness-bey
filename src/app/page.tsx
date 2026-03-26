@@ -4,7 +4,9 @@ import { useState, useEffect } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, Share2, Link2, Coffee, BookOpen, HomeIcon, Star } from 'lucide-react';
 
 const menuItems = [
+  // Cafés
   { name: 'Espresso', description: 'Riche et audacieux, simple cuvette', price: '4 DT', category: 'coffee' },
+  { name: 'Espresso Double', description: 'Double shot pour les amateurs', price: '6 DT', category: 'coffee' },
   { name: 'Cappuccino', description: 'Espresso avec lait vapeur et mousse', price: '7 DT', category: 'coffee' },
   { name: 'Latte', description: 'Espresso onctueux au lait crémeux', price: '8 DT', category: 'coffee' },
   { name: 'Americano', description: 'Espresso allongé à l\'eau chaude', price: '5 DT', category: 'coffee' },
@@ -12,10 +14,53 @@ const menuItems = [
   { name: 'Mocha', description: 'Espresso, chocolat et lait vapeur', price: '10 DT', category: 'coffee' },
   { name: 'Macchiato', description: 'Espresso marqué de mousse de lait', price: '6 DT', category: 'coffee' },
   { name: 'Café Glacé', description: 'Cold brew servi sur glaçons', price: '8 DT', category: 'coffee' },
+  { name: 'Café Turc', description: 'Café traditionnel à la turque', price: '5 DT', category: 'coffee' },
+  { name: 'Café Direct', description: 'Café local tunisien classique', price: '4 DT', category: 'coffee' },
+  { name: 'Cappuccino Glacé', description: 'Cappuccino glacé onctueux', price: '10 DT', category: 'coffee' },
+  
+  // Petit Déjeuner
+  { name: 'Petit Déjeuner Complet', description: 'Œufs, fromage, pain, beurre, confiture, jus', price: '18 DT', category: 'breakfast' },
+  { name: 'Œufs Brouillés', description: 'Œufs brouillés moelleux avec toast', price: '10 DT', category: 'breakfast' },
+  { name: 'Omelette Fromage', description: 'Omelette fondante au fromage', price: '12 DT', category: 'breakfast' },
+  { name: 'Omelette Jambon', description: 'Omelette au jambon et fromage', price: '14 DT', category: 'breakfast' },
+  { name: 'Tartine Avocat', description: 'Avocat frais sur pain artisanal', price: '15 DT', category: 'breakfast' },
+  { name: 'Tartine Fromage', description: 'Fromage frais sur pain grillé', price: '8 DT', category: 'breakfast' },
+  { name: 'Pancakes', description: 'Pancakes moelleux au sirop d\'érable', price: '14 DT', category: 'breakfast' },
+  { name: 'French Toast', description: 'Pain perdu croustillant et moelleux', price: '13 DT', category: 'breakfast' },
+  { name: 'Brik à l\'Œuf', description: 'Brik traditionnel tunisien', price: '8 DT', category: 'breakfast' },
+  
+  // Pâtisseries & Desserts
   { name: 'Croissant', description: 'Pâtisserie feuilletée au beurre', price: '5 DT', category: 'food' },
   { name: 'Pain au Chocolat', description: 'Croissant fourré au chocolat', price: '6 DT', category: 'food' },
-  { name: 'Tartine Avocat', description: 'Avocat frais sur pain artisanal', price: '15 DT', category: 'food' },
   { name: 'Cheesecake', description: 'Classique cheesecake onctueux', price: '12 DT', category: 'food' },
+  { name: 'Brownie', description: 'Brownie fondant au chocolat', price: '10 DT', category: 'food' },
+  { name: 'Tiramisu', description: 'Dessert italien au café', price: '14 DT', category: 'food' },
+  { name: 'Cookie Géant', description: 'Cookie moelleux aux pépites', price: '8 DT', category: 'food' },
+  { name: 'Muffin Chocolat', description: 'Muffin fondant au chocolat', price: '7 DT', category: 'food' },
+  { name: 'Mille-Feuille', description: 'Pâtisserie feuilletée à la crème', price: '11 DT', category: 'food' },
+  { name: 'Baklava', description: 'Pâtisserie orientale au miel', price: '8 DT', category: 'food' },
+  { name: 'Glace (2 boules)', description: 'Glace artisanale, plusieurs parfums', price: '9 DT', category: 'food' },
+  
+  // Boissons Fraîches
+  { name: 'Jus d\'Orange Frais', description: 'Oranges fraîchement pressées', price: '8 DT', category: 'drinks' },
+  { name: 'Jus de Citron', description: 'Citronnade rafraîchissante', price: '7 DT', category: 'drinks' },
+  { name: 'Jus de Fraise', description: 'Jus de fraise frais', price: '9 DT', category: 'drinks' },
+  { name: 'Milkshake Vanille', description: 'Milkshake onctueux à la vanille', price: '10 DT', category: 'drinks' },
+  { name: 'Milkshake Chocolat', description: 'Milkshake riche au chocolat', price: '10 DT', category: 'drinks' },
+  { name: 'Smoothie Fruits Rouges', description: 'Mix de fruits rouges frais', price: '12 DT', category: 'drinks' },
+  { name: 'Thé à la Menthe', description: 'Thé tunisien traditionnel', price: '5 DT', category: 'drinks' },
+  { name: 'Eau Minérale', description: 'Eau minérale naturelle', price: '3 DT', category: 'drinks' },
+  { name: 'Soda', description: 'Coca, Fanta, Sprite', price: '5 DT', category: 'drinks' },
+  
+  // Chicha
+  { name: 'Chicha Pomme', description: 'Goût pomme verte fraîche', price: '25 DT', category: 'chicha' },
+  { name: 'Chicha Raisin', description: 'Saveur raisin doux', price: '25 DT', category: 'chicha' },
+  { name: 'Chicha Menthe', description: 'Menthe fraîche et rafraîchissante', price: '25 DT', category: 'chicha' },
+  { name: 'Chicha Pastèque', description: 'Goût pastèque sucrée', price: '25 DT', category: 'chicha' },
+  { name: 'Chicha Fraise', description: 'Saveur fraise gourmande', price: '25 DT', category: 'chicha' },
+  { name: 'Chicha Blueberry', description: 'Myrtille onctueuse', price: '28 DT', category: 'chicha' },
+  { name: 'Chicha Cocktail', description: 'Mix de saveurs exotiques', price: '30 DT', category: 'chicha' },
+  { name: 'Chicha Glacée', description: 'Chicha avec glace, fraîcheur intense', price: '30 DT', category: 'chicha' },
 ];
 
 const hours = [
@@ -332,7 +377,7 @@ export default function Home() {
           {/* Filter chips */}
           <div style={{ display: 'flex', gap: '12px', padding: '0 24px 32px', overflowX: 'auto', scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch', justifyContent: 'center' }}>
             <style>{`.chip-scroll::-webkit-scrollbar{display:none}`}</style>
-            {[['all','Tout'],['coffee','Cafés'],['food','Pâtisseries']].map(([val, label]) => (
+            {[['all','Tout'],['coffee','Cafés'],['breakfast','Petit Déj'],['food','Pâtisseries'],['drinks','Boissons'],['chicha','Chicha']].map(([val, label]) => (
               <button key={val} className={`filter-chip${activeFilter === val ? ' active' : ''}`} onClick={() => setActiveFilter(val)}>{label}</button>
             ))}
           </div>
