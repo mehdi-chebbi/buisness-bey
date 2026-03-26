@@ -14,10 +14,26 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Business Bey | Coffee Shop in L'Aouina, Tunisia",
-  description: "Welcome to Business Bey - Your cozy coffee spot in L'Aouina, Tunisia. Premium coffee, warm atmosphere, and unforgettable moments.",
+  description:
+    "Welcome to Business Bey - Your cozy coffee spot in L'Aouina, Tunisia. Premium coffee, warm atmosphere, and unforgettable moments.",
   icons: {
-    icon: "logo.svg",
-    apple: "logo.svg",
+    icon: "/logo.svg", // also fix path (see below)
+    apple: "/logo.svg",
+  },
+  openGraph: {
+    title: "Business Bey | Coffee Shop in L'Aouina, Tunisia",
+    description:
+      "Welcome to Business Bey - Your cozy coffee spot in L'Aouina, Tunisia.",
+    url: "https://business-bey.kubemate.dev",
+    siteName: "Business Bey",
+    images: [
+      {
+        url: "/images/logo.jpg", // ⚠️ IMPORTANT (see next section)
+        width: 512,
+        height: 512,
+      },
+    ],
+    type: "website",
   },
 };
 
